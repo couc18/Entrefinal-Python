@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% load bootstrap_filters %}
+
+{% block title %}Bandeja de Entrada{% endblock %}
+
+{% block content %}
+<h2>Bandeja de Entrada</h2>
+
+{% if messages %}
+    <ul>
+    {% for message in messages %}
+        <li>
+            <strong>De:</strong> {{ message.sender.username }} | 
+            <strong>Asunto:</strong> {{ message.subject }} | 
+            <strong>Fecha:</strong> {{ message.created_at }} 
+            <p>{{ message.body }}</p>
+        </li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No tienes mensajes.</p>
+{% endif %}
+{% endblock %}

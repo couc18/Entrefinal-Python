@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% load bootstrap_filters %}
+
+{% block title %}Enviar Mensaje{% endblock %}
+
+{% block content %}
+{% if messages %}
+    <div class="alert alert-success">
+        {% for message in messages %}
+            {{ message }}
+        {% endfor %}
+    </div>
+{% endif %}
+<h2>Enviar Mensaje</h2>
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Enviar</button>
+</form>
+
+<div class="container mt-5"></div>
+    <h2>Ir al Mailbox</h2>
+    <form method="POST">
+        {% csrf_token %}
+        <a href="{% url 'inbox' %}" class="btn btn-secondary">Ir</a>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% load bootstrap_filters %}
+
+
+{% block title %}Crear/Actualizar Blog{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2>{% if form.instance.pk %}Actualizar Blog{% else %}Crear Blog{% endif %}</h2>
+
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="mb-3">
+            {{ form.title.label_tag }}
+            {{ form.title|add_class:"form-control" }}
+        </div>
+        <div class="mb-3">
+            {{ form.subtitle.label_tag }}
+            {{ form.subtitle|add_class:"form-control" }}
+        </div>
+        <div class="mb-3">
+            {{ form.body.label_tag }}
+            {{ form.body|add_class:"form-control" }}
+        </div>
+        <div class="mb-3">
+            {{ form.author.label_tag }}
+            {{ form.author|add_class:"form-control" }}
+        </div>
+        <div class="mb-3">
+            {{ form.image.label_tag }}
+            {{ form.image|add_class:"form-control" }}
+        </div>
+        <button type="submit" class="btn btn-primary">{% if form.instance.pk %}Actualizar{% else %}Crear{% endif %}</button>
+    </form>
+</div>
+{% endblock %}

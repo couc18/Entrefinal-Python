@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load bootstrap_filters %}
+
+{% block title %}Perfil{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="mb-4">Actualizar Perfil</h2>
+
+    <!-- Mostrar mensajes de éxito o error -->
+    {% if messages %}
+        <div class="alert alert-dismissible fade show" role="alert">
+            {% for message in messages %}
+                {% if "success" in message.tags or "error" in message.tags %}
+                    <div class="alert alert-{{ message.tags }}">
+                        {{ message }}
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <!-- Mostrar imagen de perfil actual -->
+        <div class="mb-3 text-center">
+            {% if profile.image %}
+                <img src="{{ profile.image.url }}" alt="Foto de perfil" class="img-thumbnail mb-3" style="max-width: 150px;">
+            {% else %}
+                <img src="{% static 'default_profile.png' %}" alt="Foto de perfil" class="img-thumbnail mb-3" style="max-width: 150px;">
+            {% endif %}
+        </div>
+
+        <!-- Campo para cargar nueva imagen -->
+        <div class="mb-3">
+            {{ form.image.label_tag }} 
+            {{ form.image|add_class:"form-control" }}
+        </div>
+
+        <!-- Otros campos del perfil -->
+        <div class="mb-3">
+            {{ form.name.label_tag }} 
+            {{ form.name|add_class:"form-control" }}
+        </div>
+        <div class="mb-3">
+            {{ form.description.label_tag }} 
+            {{ form.description|add_class:"form-control" }}
+        </div>
+        <div class="mb-3">
+            {{ form.website.label_tag }} 
+            {{ form.website|add_class:"form-control" }}
+        </div>
+        <div class="mb-3">
+            {{ form.email.label_tag }} 
+            {{ form.email|add_class:"form-control" }}
+        </div>
+
+        <!-- Contraseña actual para confirmar cambios -->
+        <div class="mb-3">
+            <label for="password">Contraseña actual:</label>
+            <input type="password" name="password" class="form-control" required>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+    </form>
+</div>
+
+{% endblock %}

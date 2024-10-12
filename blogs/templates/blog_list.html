@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% load bootstrap_filters %}
+
+{% block title %}Lista de Blogs{% endblock %}
+
+{% block content %}
+<h2 class="mb-4">Lista de Blogs</h2>
+
+{% if user.is_authenticated %}
+    <!-- Mostrar botón para crear nuevo blog solo si el usuario está autenticado -->
+    <div class="d-flex justify-content-end mb-3">
+        <a href="{% url 'blog_create' %}" class="btn btn-success">Crear nuevo blog</a>
+    </div>
+{% endif %}
+
+<div class="row">
+    {% if blogs.exists %}
+        {% for blog in blogs %}
+        <div class="col-md-4 mb-3">
+            <div class="card">
+                <img src="{{ blog.image.url }}" class="card-img-top" alt="{{ blog.title }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ blog.title }}</h5>
+                    <p class="card-text">{{ blog.subtitle }}</p>
+                    <a href="{% url 'blog_detail' blog.pk %}" class="btn btn-primary">Leer más</a>
+
+                    {% if user.is_authenticated %}
+                        <!-- Mostrar opciones de actualización y eliminación solo si el usuario está autenticado -->
+                        <a href="{% url 'blog_update' blog.pk %}" class="btn btn-warning">Actualizar</a>
+                        <a href="{% url 'blog_delete' blog.pk %}" class="btn btn-danger">Borrar</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    {% else %}
+        <p>No se encontraron blogs disponibles.</p>
+    {% endif %}
+</div>
+{% endblock %}

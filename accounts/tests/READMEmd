@@ -1,0 +1,21 @@
+# Casos de Prueba 
+Este proyecto incluye pruebas automatizadas para verificar la funcionalidad de los modelos, vistas y formularios. 
+
+## Casos de Prueba 
+
+### 1. Prueba del Modelo (`test_models.py`) 
+- **Objetivo:** Verificar la creación y representación de un perfil. 
+- **Pruebas Incluidas:** 
+- Creación del perfil con datos válidos. 
+- Representación en cadena del perfil. 
+
+### 2. Prueba de la Vista (`test_views.py`) 
+- **Objetivo:** Asegurar que la vista del perfil se carga correctamente. 
+- **Pruebas Incluidas:** 
+- Verificación del código de estado y la plantilla utilizada al acceder a la vista del perfil. 
+
+### 3. Prueba del Formulario (`test_forms.py`) 
+- **Objetivo:** Validar el formulario de actualización del perfil. 
+- **Pruebas Incluidas:** 
+- Verificación de la validez del formulario con datos válidos. 
+- Comprobación de errores cuando se envían datos inválidos.

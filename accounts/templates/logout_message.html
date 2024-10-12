@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% load bootstrap_filters %}
+{% block title %}Gracias por su visita{% endblock %}
+
+{% block content %}
+<div class="container text-center mt-5">
+    <div class="alert alert-success" role="alert">
+        <h4 class="alert-heading">Gracias por su visita</h4>
+        <p>Vuelva pronto.</p>
+        <hr>
+        <a href="{% url 'login' %}" class="btn btn-primary">Iniciar sesión de nuevo</a>
+    </div>
+</div>
+{% endblock %}
